@@ -155,6 +155,10 @@ systemctl restart sshd
 apt-get install docker-ce
 systemctl enable --now docker docker.socket
 docker image load -i  /mnt/nfsshare/cstrike-docker.tar
+???
+apt-get install docker
+docker pull febley/counter-strike_server
+docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 febley/counter-strike_server:latest
 ```
 * Установите хранилище данных nextcloud
 ```  Развернуть Nextcloud можно используя пакет deploy (см. Deploy):
