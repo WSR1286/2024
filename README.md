@@ -157,21 +157,17 @@ systemctl restart sshd
 apt-get install docker-ce
 systemctl enable --now docker docker.socket
 docker image load -i  /mnt/nfsshare/cstrike-docker.tar
-???
+
+ИЛИ ???
 apt-get install docker
 docker pull febley/counter-strike_server
 docker run --name counter-strike_server -p 27015:27015/udp -p 27015:27015 febley/counter-strike_server:latest
 ```
 * Установите хранилище данных nextcloud
-```  Развернуть Nextcloud можно используя пакет deploy (см. Deploy):
+```  Развернуть Nextcloud можно используя пакет deploy:
 Сначала, если еще не выполняли apt-get update
 apt-get install deploy
 deploy nextcloud
-Nextcloud будет установлен в /var/www/webapps/nextcloud, веб-интерфейс будет доступен по ссылке:
-http://localhost/nextcloud
-Логин - ncadmin 
-Пароль можно найти в файле /var/www/webapps/nextcloud/config/config.php в параметре dbpassword.
-Нажать справа на кружок, выбрать «Пользователи», слева 
 ```
 * Настройте пользователя USER_RESU с паролем P@ssw0rd для доступа с клиентского компьютера
 ``` 
@@ -179,7 +175,14 @@ Nextcloud будет установлен в /var/www/webapps/nextcloud, веб-
 http://localhost/nextcloud
 Логин - ncadmin 
 Пароль можно найти в файле /var/www/webapps/nextcloud/config/config.php в параметре dbpassword.
-Нажать справа на кружок, выбрать «Пользователи», слева 
+Нажать справа на кружок, выбрать «Пользователи», слева
+
+
+в пункт array  дописать
+3 => '10.11.12.10',   или 4=> в зависимости от того, какие уже цифры стоят
+4 => '10.11.12.1',
+5 => '10.11.12.  ',   и указать ip-адрес CLI
+сохранить файл 
 ```
 * Установите Web-интерфейс Алтератор для управления сервером с CLI
 ```
