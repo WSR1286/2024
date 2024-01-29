@@ -49,18 +49,20 @@ https://www.altlinux.org/Kaspersky_Endpoint_Security
 в терминал скопировать /opt/kaspersky/kesl/bin/kesl-setup.pl
 и много раз Enter и y
 ```
-* Настройте расписание сканирование системы
+* Настройте расписание сканирование системы - ПОЗОВИ РОМУ!
 ```
 kesl-control --get-task-list и посмотреть что стоит в 1 и 2 пунктах, затем 
 kesl-control --get-schedule Scan_My_Computer
 /opt/kaspersky/kesl/bin/kesl-control --get-schedule 2 --file /mnt/shed.ini
 Зайти в файл /mnt/shed.ini удалить все в нем и скопировать текст
+F4 - редактировать
 RuleType=Hourly
 RunMissedStartRules=No
 StartTime=2024/January/25 23:05:00;10
 RandomInterval=0
+F2 - сохранить
 Затем
-kesl-control --set-schedule Scan_My_Computer --file /mnt/shed.in
+kesl-control --set-schedule Scan_My_Computer --file /mnt/shed.ini
 kesl-control --start-t  Scan_My_Computer
 kesl-control --start-t  File_Threat_Protection
 Проверить 
