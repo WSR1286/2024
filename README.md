@@ -157,7 +157,8 @@ systemctl restart sshd
 apt-get install docker-ce
 systemctl enable --now docker docker.socket
 docker image load -i  /mnt/nfsshare/cstrike-docker.tar
-
+docker pull cajuclc/cstrike-docker
+docker run --name cstrike -p 27015:27015/udp -p 27015:27015 cajuclc/cstrike-docker
 ИЛИ ???
 apt-get install docker
 docker pull febley/counter-strike_server
