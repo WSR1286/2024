@@ -32,7 +32,8 @@ apt-get install i586-steam
 ```
 * Подключитесь к nextcloud и сохраните учётные данные для входа.
 ```
-??? Ввести в браузере https://10.11.12.10:8080 
+??? Ввести в браузере https://10.11.12.10/nextloud
+сохранить пароли
 ```
 * Установите антивирус Kaspersky
 ```
@@ -82,7 +83,13 @@ kesl-control --get-schedule Scan_My_Computer
 ```
 Сначала установить Wine
 apt-get install wine-full i586-wine
+через него поставить CS
 https://soft-game.net/load/cs/download_cs/counter_strike_1_6_na_russkom_jazyke/2-1-0-581
+после установки зайти в Найти серверы – Избранное – Добавить
+ввести 10.11.12.10:27015
+либо через в консоль:
+клавиша ~ затем connect 10.11.12.10:27015
+
 только после
 apt-get install playonlinux
 
@@ -124,7 +131,7 @@ hostnamectl set-hostname SRV
 * Поменяйте пароль пользователю user на P@ssw0rd
 ```
 passwd user
-! Обязательно перезагрузи SRV и зайди в user заново под новым паролем
+!!! Обязательно перезагрузи SRV и зайди в user заново под новым паролем
 ```
 * Подключите созданную NFS шару с сервера 10.11.12.1. Она должна автоматический монтироваться по пути /mnt/nfsshare
 ```
@@ -135,6 +142,11 @@ passwd user
 mount 10.11.12.1:/mysharedir /mnt/nfsshare
 Зайди заново в папку и проверь появился ли там файл cstrike-docker.tar
 если нет попробуй mount -t nfs 10.11.12.1:/mysharedir /mnt/nfsshare
+Автоматическое монтирование:
+в файл /etc/fstab вписать (F4) строку:
+10.11.12.1:/mysharedir /mnt/nfsshare ext4 defaults 0 1
+и сохранить (F2)
+инфа - https://losst.pro/avtomaticheskoe-montirovanie-fstab-i-systemd
 ```
 * Настройте подключение по SSH для удалённого конфигурирования устройства
 ```
@@ -174,17 +186,19 @@ deploy nextcloud
 ``` 
 Nextcloud будет установлен в /var/www/webapps/nextcloud, веб-интерфейс будет доступен по ссылке:
 http://localhost/nextcloud
+либо с клиента http://10.11.12.10/nextcloud , где 10.11.12.10 - ip-адрес SRV
 Логин - ncadmin 
 Пароль можно найти в файле /var/www/webapps/nextcloud/config/config.php в параметре dbpassword.
-Нажать справа на кружок, выбрать «Пользователи», слева
+Нажать справа на кружок, выбрать «Пользователи», слева Добавить пользователя
+После внесения изменений в файл конфигурации Nextcloud необходимо перезапустить веб-сервер:
+systemctl restart httpd2
 
+???
 в пункт array  дописать
 3 => '10.11.12.10',   или 4=> в зависимости от того, какие уже цифры стоят
 4 => '10.11.12.1',
 5 => '10.11.12.  ',   и указать ip-адрес CLI
 сохранить файл
-После внесения изменений в файл конфигурации Nextcloud необходимо перезапустить веб-сервер:
-systemctl restart httpd2
 https://docs.altlinux.org/ru-RU/alt-server/10.2/html/alt-server/nextcloud.html#idm46055144801712
 
 ```
